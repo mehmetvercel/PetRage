@@ -14,7 +14,7 @@
 
         body {
             font-family: 'Georgia', serif;
-            background: linear-gradient(135deg, #2d8a2f, #4caf50, #66bb6a, #2d8a2f);
+            background: linear-gradient(135deg, #8b1538, #dc143c, #ff4500, #8b1538);
             background-size: 400% 400%;
             animation: gradientShift 8s ease infinite;
             min-height: 100vh;
@@ -514,6 +514,34 @@
             letter-spacing: 1px;
         }
 
+        /* Background Animation Elements */
+        .background-emoji {
+            position: fixed;
+            pointer-events: none;
+            z-index: 1;
+            font-size: 2rem;
+            opacity: 0;
+            animation: popAndFade 3s ease-out forwards;
+        }
+
+        @keyframes popAndFade {
+            0% {
+                opacity: 0;
+                transform: scale(0) rotate(0deg);
+            }
+            15% {
+                opacity: 1;
+                transform: scale(1.2) rotate(180deg);
+            }
+            30% {
+                transform: scale(1) rotate(360deg);
+            }
+            100% {
+                opacity: 0;
+                transform: scale(0.8) rotate(720deg) translateY(-50px);
+            }
+        }
+
         /* Responsive Design */
         @media (max-width: 768px) {
             .hero {
@@ -855,8 +883,8 @@
                     <br>
                     <small>Show us the beautiful destruction (JPG, PNG, GIF)</small>
                 `;
-                label.style.borderColor = '#4caf50';
-                label.style.background = 'rgba(76, 175, 80, 0.05)';
+                label.style.borderColor = '#dc143c';
+                label.style.background = 'rgba(220, 20, 60, 0.05)';
             }
         });
 
