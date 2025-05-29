@@ -1,0 +1,955 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PetRage Coin ($RAGE) - Most Chaotic Pets Win!</title>
+    <link rel="icon" type="image/png" href="icon.png">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Georgia', serif;
+            background: linear-gradient(135deg, #2d8a2f, #4caf50, #66bb6a, #2d8a2f);
+            background-size: 400% 400%;
+            animation: gradientShift 8s ease infinite;
+            min-height: 100vh;
+            color: #1a1a1a;
+        }
+
+        @keyframes gradientShift {
+            0%, 100% { background-position: 0% 50%; }
+            25% { background-position: 100% 50%; }
+            50% { background-position: 100% 100%; }
+            75% { background-position: 0% 100%; }
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Header */
+        header {
+            padding: 30px 0;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .logo {
+            font-size: 4rem;
+            font-weight: 900;
+            color: #fff;
+            text-shadow: 
+                4px 4px 0px #1b5e20,
+                8px 8px 15px rgba(0,0,0,0.3);
+            margin-bottom: 15px;
+            position: relative;
+            z-index: 2;
+        }
+
+        .logo::before {
+            content: '💥🐾💥';
+            position: absolute;
+            top: -20px;
+            left: 50%;
+            transform: translateX(-50%);
+            font-size: 2rem;
+            animation: float 3s ease-in-out infinite;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateX(-50%) translateY(0px); }
+            50% { transform: translateX(-50%) translateY(-10px); }
+        }
+
+        .tagline {
+            font-size: 1.4rem;
+            color: #e8f5e8;
+            font-style: italic;
+            margin-bottom: 25px;
+            font-family: 'Arial', sans-serif;
+        }
+
+        .twitter-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            background: linear-gradient(45deg, #1da1f2, #0d7bc4);
+            color: white;
+            padding: 15px 30px;
+            text-decoration: none;
+            border-radius: 25px;
+            font-weight: bold;
+            font-size: 1.1rem;
+            transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+            box-shadow: 0 6px 20px rgba(29, 161, 242, 0.4);
+            border: 2px solid rgba(255,255,255,0.2);
+        }
+
+        .twitter-btn:hover {
+            transform: translateY(-3px) scale(1.05);
+            box-shadow: 0 12px 30px rgba(29, 161, 242, 0.6);
+        }
+
+        /* Main Content Sections with Different Layouts */
+        main {
+            padding: 20px 0 60px 0;
+        }
+
+        /* Hero Section - Asymmetric Layout */
+        .hero {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 40px;
+            align-items: center;
+            margin-bottom: 80px;
+            background: rgba(255, 255, 255, 0.95);
+            padding: 50px;
+            border-radius: 30px 10px 30px 10px;
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.2);
+            position: relative;
+        }
+
+        .hero::before {
+            content: '🔥';
+            position: absolute;
+            top: -20px;
+            right: 30px;
+            font-size: 3rem;
+            animation: spin 4s linear infinite;
+        }
+
+        @keyframes spin {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+
+        .hero-content h1 {
+            font-size: 3rem;
+            color: #1b5e20;
+            margin-bottom: 25px;
+            line-height: 1.2;
+            font-family: 'Georgia', serif;
+        }
+
+        .hero-content p {
+            font-size: 1.3rem;
+            color: #444;
+            line-height: 1.7;
+            font-family: 'Arial', sans-serif;
+        }
+
+        .hero-visual {
+            text-align: center;
+            font-size: 8rem;
+            animation: bounce 2s ease-in-out infinite alternate;
+        }
+
+        @keyframes bounce {
+            from { transform: translateY(0px); }
+            to { transform: translateY(-20px); }
+        }
+
+        /* Upload Section - Card Style */
+        .upload-section {
+            background: linear-gradient(135deg, rgba(255,255,255,0.9), rgba(240,248,240,0.9));
+            padding: 60px 40px;
+            border-radius: 25px;
+            margin-bottom: 60px;
+            box-shadow: 
+                0 20px 60px rgba(0, 0, 0, 0.15),
+                inset 0 1px 0 rgba(255,255,255,0.8);
+            border: 1px solid rgba(255,255,255,0.3);
+            position: relative;
+        }
+
+        .upload-section::after {
+            content: '';
+            position: absolute;
+            top: -5px;
+            left: -5px;
+            right: -5px;
+            bottom: -5px;
+            background: linear-gradient(45deg, #4caf50, #66bb6a, #81c784, #4caf50);
+            z-index: -1;
+            border-radius: 30px;
+            animation: borderGlow 3s ease-in-out infinite alternate;
+        }
+
+        @keyframes borderGlow {
+            from { opacity: 0.3; }
+            to { opacity: 0.7; }
+        }
+
+        .section-title {
+            text-align: center;
+            color: #1b5e20;
+            font-size: 2.5rem;
+            margin-bottom: 40px;
+            font-family: 'Georgia', serif;
+            position: relative;
+        }
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 100px;
+            height: 4px;
+            background: linear-gradient(90deg, #4caf50, #66bb6a);
+            border-radius: 2px;
+        }
+
+        .upload-form {
+            max-width: 700px;
+            margin: 0 auto;
+        }
+
+        .file-upload {
+            position: relative;
+            margin-bottom: 30px;
+        }
+
+        .file-input {
+            position: absolute;
+            opacity: 0;
+            width: 100%;
+            height: 100%;
+            cursor: pointer;
+        }
+
+        .file-label {
+            display: block;
+            padding: 50px;
+            border: 4px solid #4caf50;
+            border-style: dashed;
+            border-radius: 20px;
+            text-align: center;
+            background: rgba(76, 175, 80, 0.05);
+            cursor: pointer;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .file-label::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: linear-gradient(45deg, transparent, rgba(76, 175, 80, 0.1), transparent);
+            transform: rotate(45deg);
+            transition: all 0.5s ease;
+            opacity: 0;
+        }
+
+        .file-label:hover::before {
+            animation: shimmer 1.5s ease-in-out infinite;
+            opacity: 1;
+        }
+
+        @keyframes shimmer {
+            0% { transform: translateX(-100%) translateY(-100%) rotate(45deg); }
+            100% { transform: translateX(100%) translateY(100%) rotate(45deg); }
+        }
+
+        .file-label:hover {
+            background: rgba(76, 175, 80, 0.15);
+            transform: scale(1.02);
+            border-color: #66bb6a;
+        }
+
+        .file-icon {
+            font-size: 4rem;
+            margin-bottom: 20px;
+            display: block;
+        }
+
+        .description-input {
+            width: 100%;
+            padding: 20px;
+            border: 3px solid #e0e0e0;
+            border-radius: 15px;
+            font-size: 1.1rem;
+            margin-bottom: 25px;
+            resize: vertical;
+            min-height: 120px;
+            font-family: 'Arial', sans-serif;
+            transition: all 0.3s ease;
+        }
+
+        .description-input:focus {
+            border-color: #4caf50;
+            outline: none;
+            box-shadow: 0 0 0 3px rgba(76, 175, 80, 0.2);
+        }
+
+        .submit-btn {
+            width: 100%;
+            padding: 20px;
+            background: linear-gradient(135deg, #4caf50, #66bb6a);
+            color: white;
+            border: none;
+            border-radius: 15px;
+            font-size: 1.3rem;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.4s ease;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .submit-btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
+            transition: left 0.6s ease;
+        }
+
+        .submit-btn:hover::before {
+            left: 100%;
+        }
+
+        .submit-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 25px rgba(76, 175, 80, 0.4);
+        }
+
+        /* Gallery Section - Masonry Style */
+        .gallery-section {
+            background: rgba(255, 255, 255, 0.92);
+            padding: 50px 30px;
+            border-radius: 40px 5px 40px 5px;
+            box-shadow: 0 25px 50px rgba(0, 0, 0, 0.15);
+            margin-bottom: 60px;
+        }
+
+        .pet-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 35px;
+            margin-top: 40px;
+        }
+
+        .pet-card {
+            background: white;
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.12);
+            transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+            position: relative;
+            border: 2px solid transparent;
+        }
+
+        .pet-card:nth-child(odd) {
+            transform: rotate(-1deg);
+        }
+
+        .pet-card:nth-child(even) {
+            transform: rotate(1deg);
+        }
+
+        .pet-card:hover {
+            transform: translateY(-8px) rotate(0deg) scale(1.03);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.25);
+            border-color: #4caf50;
+        }
+
+        .pet-image {
+            width: 100%;
+            height: 280px;
+            object-fit: cover;
+            transition: transform 0.4s ease;
+        }
+
+        .pet-card:hover .pet-image {
+            transform: scale(1.1);
+        }
+
+        .pet-info {
+            padding: 25px;
+            background: linear-gradient(135deg, #ffffff, #f8fdf8);
+        }
+
+        .pet-description {
+            color: #555;
+            margin-bottom: 20px;
+            line-height: 1.6;
+            font-size: 1.05rem;
+        }
+
+        .vote-section {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .vote-btn {
+            background: linear-gradient(135deg, #4caf50, #66bb6a);
+            color: white;
+            border: none;
+            padding: 12px 24px;
+            border-radius: 30px;
+            cursor: pointer;
+            font-weight: bold;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .vote-btn:hover {
+            transform: scale(1.1);
+            box-shadow: 0 5px 15px rgba(76, 175, 80, 0.4);
+        }
+
+        .vote-count {
+            font-weight: bold;
+            color: #1b5e20;
+            font-size: 1.2rem;
+            background: rgba(76, 175, 80, 0.1);
+            padding: 8px 16px;
+            border-radius: 20px;
+        }
+
+        .crown {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            font-size: 2.5rem;
+            z-index: 2;
+            animation: crown-bounce 2s ease-in-out infinite;
+        }
+
+        @keyframes crown-bounce {
+            0%, 100% { transform: translateY(0) rotate(0deg); }
+            25% { transform: translateY(-5px) rotate(-5deg); }
+            75% { transform: translateY(-3px) rotate(5deg); }
+        }
+
+        /* Stats Section - Hexagonal Cards */
+        .stats-section {
+            background: linear-gradient(135deg, rgba(255,255,255,0.95), rgba(245,255,245,0.95));
+            padding: 60px 40px;
+            border-radius: 50px;
+            box-shadow: 
+                0 30px 60px rgba(0, 0, 0, 0.15),
+                inset 0 1px 0 rgba(255,255,255,0.9);
+            position: relative;
+        }
+
+        .stats-section::before {
+            content: '📊';
+            position: absolute;
+            top: 20px;
+            left: 30px;
+            font-size: 2rem;
+            opacity: 0.7;
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+            text-align: center;
+        }
+
+        .stat-item {
+            padding: 30px 20px;
+            background: linear-gradient(135deg, #ffffff, #f0f8f0);
+            border-radius: 25px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+            border: 2px solid rgba(76, 175, 80, 0.2);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .stat-item::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(90deg, #4caf50, #66bb6a, #81c784);
+        }
+
+        .stat-item:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 40px rgba(76, 175, 80, 0.3);
+        }
+
+        .stat-number {
+            font-size: 3rem;
+            font-weight: 900;
+            color: #1b5e20;
+            display: block;
+            font-family: 'Georgia', serif;
+        }
+
+        .stat-label {
+            color: #666;
+            font-size: 1.1rem;
+            margin-top: 10px;
+            font-weight: 500;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .hero {
+                grid-template-columns: 1fr;
+                text-align: center;
+                gap: 20px;
+            }
+
+            .hero-content h1 {
+                font-size: 2.2rem;
+            }
+
+            .logo {
+                font-size: 2.5rem;
+            }
+
+            .upload-section,
+            .gallery-section,
+            .stats-section {
+                padding: 30px 20px;
+            }
+
+            .pet-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .pet-card:nth-child(odd),
+            .pet-card:nth-child(even) {
+                transform: rotate(0deg);
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <div class="logo">PetRage Coin</div>
+            <div class="tagline">Where Pet Chaos Meets Crypto Rewards</div>
+            <a href="https://x.com/petragecoin" target="_blank" class="twitter-btn">
+                <span>🐦</span>
+                Follow @PetRageCoin
+            </a>
+        </div>
+    </header>
+
+    <main>
+        <div class="container">
+            <section class="hero">
+                <div class="hero-content">
+                    <h1>Transform Destruction Into Digital Gold</h1>
+                    <p>
+                        Every pet has that moment of pure chaos - the shredded cushions, toppled plants, or mysterious kitchen disasters. Now those moments of mayhem can earn you $RAGE tokens! Submit your pet's most destructive masterpiece and let the community decide who deserves the crown of chaos.
+                    </p>
+                </div>
+                <div class="hero-visual">
+                    🐕‍🦺💥🏆
+                </div>
+            </section>
+
+            <section class="upload-section">
+                <h2 class="section-title">Submit Your Chaos Champion</h2>
+                <form class="upload-form" id="uploadForm">
+                    <div class="file-upload">
+                        <input type="file" id="petPhoto" class="file-input" accept="image/*" required>
+                        <label for="petPhoto" class="file-label">
+                            <span class="file-icon">📷</span>
+                            <strong>Drop your chaos photo here</strong>
+                            <br>
+                            <small>Show us the beautiful destruction (JPG, PNG, GIF)</small>
+                        </label>
+                    </div>
+                    <textarea 
+                        class="description-input" 
+                        id="petDescription" 
+                        placeholder="Tell the epic tale of destruction! What chaos did your pet unleash? How much damage? Paint us the picture of this glorious disaster..."
+                        required
+                    ></textarea>
+                    <button type="submit" class="submit-btn">
+                        Launch Into Chaos → Burn 50 $RAGE
+                    </button>
+                </form>
+            </section>
+
+            <section class="gallery-section">
+                <h2 class="section-title">Hall of Chaotic Fame</h2>
+                <div class="pet-grid" id="petGrid">
+                    <!-- Pet cards will be populated by JavaScript -->
+                </div>
+            </section>
+
+            <section class="stats-section">
+                <h2 class="section-title">Chaos Statistics</h2>
+                <div class="stats-grid">
+                    <div class="stat-item">
+                        <span class="stat-number" id="totalSubmissions">0</span>
+                        <div class="stat-label">Epic Disasters</div>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-number" id="tokensBurned">0</span>
+                        <div class="stat-label">$RAGE Incinerated</div>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-number" id="dailyWinners">0</span>
+                        <div class="stat-label">Chaos Champions</div>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-number" id="communityVotes">0</span>
+                        <div class="stat-label">Votes Cast</div>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </main>
+
+    <script>
+        // Statistics management with fake counters that auto-increment
+        const STATS_KEY = 'petrage_stats';
+        
+        function getInitialRandomStats() {
+            return {
+                totalSubmissions: Math.floor(Math.random() * 21) + 100, // 100-120
+                tokensBurned: (Math.floor(Math.random() * 21) + 100) * 50, // 5000-6000 (submissions * 50)
+                dailyWinners: Math.floor(Math.random() * 21) + 100, // 100-120
+                communityVotes: (Math.floor(Math.random() * 21) + 100) * 8 // 800-960 (roughly 8x submissions)
+            };
+        }
+        
+        function getStats() {
+            if (!window.petrageStats) {
+                window.petrageStats = getInitialRandomStats();
+            }
+            return window.petrageStats;
+        }
+        
+        function saveStats(stats) {
+            window.petrageStats = stats;
+        }
+        
+        function updateStat(statName, increment) {
+            const stats = getStats();
+            stats[statName] += increment;
+            saveStats(stats);
+            return stats[statName];
+        }
+
+        // Auto-increment stats periodically
+        function startAutoIncrement() {
+            setInterval(() => {
+                const stats = getStats();
+                
+                // Random chances for different stats to increment
+                if (Math.random() < 0.3) { // 30% chance every 3 seconds
+                    updateStat('communityVotes', Math.floor(Math.random() * 3) + 1); // +1-3
+                }
+                
+                if (Math.random() < 0.15) { // 15% chance
+                    updateStat('totalSubmissions', 1);
+                    updateStat('tokensBurned', 50);
+                }
+                
+                if (Math.random() < 0.1) { // 10% chance
+                    updateStat('dailyWinners', 1);
+                }
+                
+                displayStats();
+            }, 3000); // Every 3 seconds
+        }
+
+        // Sample pet data with auto-incrementing votes - updated pets
+        let samplePets = [
+            {
+                id: 1,
+                image: 'pet1.png',
+                description: "Mr. Whiskers discovered that my brand new $4000 Italian leather sofa makes the perfect scratching post. Three hours of dedicated destruction and now it looks like abstract art. He's sitting proudly in the ruins of my living room budget.",
+                votes: Math.floor(Math.random() * 21) + 100, // Start 100-120
+                isWinner: false
+            },
+            {
+                id: 2,
+                image: 'pet2.png',
+                description: "Sir Buster decided that doors are merely suggestions, not boundaries. There's a plywood apocalypse in the hallway, wooden shards everywhere like someone hosted a very aggressive beaver convention. And there he sits, proudly panting in front of his handiwork like he just won \"Renovator of the Year.\"",
+                votes: Math.floor(Math.random() * 21) + 100, // Start 100-120
+                isWinner: false
+            },
+            {
+                id: 3,
+                image: 'pet3.png',
+                description: "Detective Chaos—also known as my dog—took it upon himself to investigate the inner workings of the mattress. Foam carnage everywhere, sheets in surrender, and he's mid-snack like this was all part of a scheduled tasting event. Clearly, he's convinced he solved a very squishy mystery.",
+                votes: Math.floor(Math.random() * 21) + 100, // Start 100-120
+                isWinner: false
+            },
+            {
+                id: 4,
+                image: 'pet4.png',
+                description: "Princess Bella decided that all 15 of my houseplants needed to be relocated to the floor. Soil explosion in every corner, ceramic shards scattered like confetti, and she's sitting in the middle like she just won a gardening award.",
+                votes: Math.floor(Math.random() * 21) + 100, // Start 100-120
+                isWinner: false
+            }
+        ];
+        
+        // Auto-increment pet votes - faster increment (every second)
+        function startPetVoteIncrement() {
+            setInterval(() => {
+                samplePets.forEach(pet => {
+                    // Each pet has a chance to increment every second
+                    if (Math.random() < 0.8) { // 80% chance per pet every second
+                        pet.votes += Math.floor(Math.random() * 2) + 2; // +2-3 votes
+                    }
+                });
+                
+                updateWinnerStatus();
+                populateGallery();
+                savePetVotes(); // Save the updated votes
+            }, 1000); // Every 1 second
+        }
+        
+        // Load saved pet votes (but start with random if new user)
+        function loadPetVotes() {
+            if (window.petVotes) {
+                samplePets.forEach(pet => {
+                    pet.votes = window.petVotes[pet.id] || (Math.floor(Math.random() * 21) + 100);
+                });
+            } else {
+                // Initialize with random 100-120 for new users
+                samplePets.forEach(pet => {
+                    pet.votes = Math.floor(Math.random() * 21) + 100;
+                });
+            }
+            updateWinnerStatus();
+        }
+        
+        // Save pet votes
+        function savePetVotes() {
+            window.petVotes = window.petVotes || {};
+            samplePets.forEach(pet => {
+                window.petVotes[pet.id] = pet.votes;
+            });
+        }
+        
+        // Update winner status based on votes
+        function updateWinnerStatus() {
+            const maxVotes = Math.max(...samplePets.map(p => p.votes));
+            samplePets.forEach(pet => {
+                pet.isWinner = pet.votes > 0 && pet.votes === maxVotes;
+            });
+        }
+
+        // Populate gallery with error handling for images
+        function populateGallery() {
+            const petGrid = document.getElementById('petGrid');
+            petGrid.innerHTML = '';
+
+            samplePets.forEach(pet => {
+                const petCard = document.createElement('div');
+                petCard.className = 'pet-card';
+                petCard.innerHTML = `
+                    ${pet.isWinner ? '<div class="crown">👑</div>' : ''}
+                    <img src="${pet.image}" alt="Chaotic Pet" class="pet-image" onerror="this.src='data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMzUwIiBoZWlnaHQ9IjI4MCIgdmlld0JveD0iMCAwIDM1MCAyODAiIGZpbGw9Im5vbmUiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+CjxyZWN0IHdpZHRoPSIzNTAiIGhlaWdodD0iMjgwIiBmaWxsPSIjNGNhZjUwIi8+Cjx0ZXh0IHg9IjE3NSIgeT0iMTQwIiB0ZXh0LWFuY2hvcj0ibWlkZGxlIiBmaWxsPSJ3aGl0ZSIgZm9udC1zaXplPSI0MCI+8J+QoTwvdGV4dD4KPHR0ZXh0IHg9IjE3NSIgeT0iMTkwIiB0ZXh0LWFuY2hvcj0ibWlkZGxlIiBmaWxsPSJ3aGl0ZSIgZm9udC1zaXplPSIxOCI+Q2hhb3MgUGV0PC90ZXh0Pgo8L3N2Zz4K'">
+                    <div class="pet-info">
+                        <p class="pet-description">${pet.description}</p>
+                        <div class="vote-section">
+                            <button class="vote-btn" onclick="vote(${pet.id})">
+                                🔥 Vote Chaos
+                            </button>
+                            <span class="vote-count">${pet.votes.toLocaleString()}</span>
+                        </div>
+                    </div>
+                `;
+                petGrid.appendChild(petCard);
+            });
+        }
+
+        // Enhanced vote function with stats tracking
+        function vote(petId) {
+            const pet = samplePets.find(p => p.id === petId);
+            if (pet) {
+                pet.votes++;
+                
+                // Update community votes stat
+                const newVotes = updateStat('communityVotes', 1);
+                
+                // Small chance to increment daily winners when voting
+                if (Math.random() < 0.1) { // 10% chance
+                    updateStat('dailyWinners', 1);
+                }
+                
+                savePetVotes();
+                updateWinnerStatus();
+                populateGallery();
+                displayStats();
+                
+                // Show notification with more personality
+                const messages = [
+                    `🔥 Chaos vote locked in! ${pet.votes.toLocaleString()} total votes for this destruction masterpiece!`,
+                    `💥 Vote registered! This chaos champion now has ${pet.votes.toLocaleString()} supporters!`,
+                    `🏆 Your vote counts! ${pet.votes.toLocaleString()} people appreciate this beautiful disaster!`
+                ];
+                alert(messages[Math.floor(Math.random() * messages.length)]);
+            }
+        }
+
+        // Enhanced form submission with stats tracking
+        document.getElementById('uploadForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const fileInput = document.getElementById('petPhoto');
+            const description = document.getElementById('petDescription').value;
+            
+            if (fileInput.files.length > 0 && description.trim()) {
+                // Update stats
+                updateStat('totalSubmissions', 1);
+                updateStat('tokensBurned', 50);
+                
+                // Small chance to increment daily winners
+                if (Math.random() < 0.15) { // 15% chance
+                    updateStat('dailyWinners', 1);
+                }
+                
+                displayStats();
+                
+                // Simulate upload with dramatic flair
+                const successMessages = [
+                    '🚀 Chaos submitted successfully! 50 $RAGE tokens sacrificed to the chaos gods!',
+                    '💥 Destruction documented! Your pet\'s mayhem is now competing for the chaos crown!',
+                    '🔥 Upload complete! 50 $RAGE tokens burned in honor of this beautiful disaster!'
+                ];
+                
+                alert(successMessages[Math.floor(Math.random() * successMessages.length)]);
+                
+                // Reset form with style
+                fileInput.value = '';
+                document.getElementById('petDescription').value = '';
+                
+                // Reset file label
+                const label = document.querySelector('.file-label');
+                label.innerHTML = `
+                    <span class="file-icon">📷</span>
+                    <strong>Drop your chaos photo here</strong>
+                    <br>
+                    <small>Show us the beautiful destruction (JPG, PNG, GIF)</small>
+                `;
+                label.style.borderColor = '#4caf50';
+                label.style.background = 'rgba(76, 175, 80, 0.05)';
+            }
+        });
+
+        // Display current stats - simplified
+        function displayStats() {
+            const stats = getStats();
+            
+            document.getElementById('totalSubmissions').textContent = stats.totalSubmissions.toLocaleString();
+            document.getElementById('tokensBurned').textContent = stats.tokensBurned.toLocaleString();
+            document.getElementById('dailyWinners').textContent = stats.dailyWinners.toLocaleString();
+            document.getElementById('communityVotes').textContent = stats.communityVotes.toLocaleString();
+        }
+
+        // Counter animation function - simplified and faster
+        function animateCounter(element, target) {
+            const start = parseInt(element.textContent.replace(/,/g, '')) || 0;
+            if (start === target) return;
+            
+            // For small increments, just update directly
+            if (Math.abs(target - start) <= 5) {
+                element.textContent = target.toLocaleString();
+                return;
+            }
+            
+            // For larger numbers, animate quickly
+            let current = start;
+            const step = target > start ? Math.ceil((target - start) / 10) : Math.floor((target - start) / 10);
+            
+            const timer = setInterval(() => {
+                current += step;
+                
+                if ((step > 0 && current >= target) || (step < 0 && current <= target)) {
+                    current = target;
+                    clearInterval(timer);
+                }
+                
+                element.textContent = current.toLocaleString();
+            }, 100);
+        }
+
+        // Enhanced file input handling
+        document.getElementById('petPhoto').addEventListener('change', function(e) {
+            const label = document.querySelector('.file-label');
+            if (e.target.files.length > 0) {
+                const fileName = e.target.files[0].name;
+                const fileSize = (e.target.files[0].size / 1024 / 1024).toFixed(2);
+                label.innerHTML = `
+                    <span class="file-icon">✅</span>
+                    <strong>${fileName}</strong>
+                    <br>
+                    <small>File loaded (${fileSize}MB) - Ready to unleash chaos!</small>
+                `;
+                label.style.borderColor = '#4caf50';
+                label.style.background = 'rgba(76, 175, 80, 0.2)';
+            }
+        });
+
+        // Stats animation on load - now loads from saved data
+        function animateStatsOnLoad() {
+            const stats = getStats();
+            const statElements = {
+                totalSubmissions: document.getElementById('totalSubmissions'),
+                tokensBurned: document.getElementById('tokensBurned'),
+                dailyWinners: document.getElementById('dailyWinners'),
+                communityVotes: document.getElementById('communityVotes')
+            };
+            
+            // Set all to 0 first, then animate to saved values
+            Object.keys(statElements).forEach((key, index) => {
+                const element = statElements[key];
+                element.textContent = '0';
+                
+                setTimeout(() => {
+                    animateCounter(element, stats[key]);
+                }, index * 200);
+            });
+        }
+
+        // Initialize page with fake auto-incrementing data
+        document.addEventListener('DOMContentLoaded', function() {
+            loadPetVotes();
+            populateGallery();
+            displayStats();
+            
+            // Start auto-incrementing after a short delay
+            setTimeout(() => {
+                startAutoIncrement();
+                startPetVoteIncrement();
+            }, 2000);
+        });
+
+        // Remove problematic floating elements function
+        // Floating elements removed to prevent performance issues
+    </script>
+</body>
+</html>
